@@ -6,9 +6,10 @@ const { Content } = Layout;
 const contentStyle: React.CSSProperties = {
   //   textAlign: "center",
   minHeight: 120,
-  lineHeight: "120px",
+  lineHeight: "100vh",
   color: "#fff",
   padding: "20px",
+  background: "#fff",
 };
 
 const CreateRedEnvelopePage = () => {
