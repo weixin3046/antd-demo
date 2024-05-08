@@ -3,16 +3,15 @@ import { Space, Typography } from "antd";
 const { Title, Text, Paragraph } = Typography;
 const contentStyle: React.CSSProperties = {
   //   textAlign: "center",
-  minHeight: 120,
-  lineHeight: "100vh",
+  minHeight: "100vh",
   color: "#fff",
   padding: "20px",
-  background: "#fff",
+  background: "rgb(24, 27, 44)",
 };
 
 const RulePage = () => {
   return (
-    <Typography style={{ padding: 20 }}>
+    <Typography style={contentStyle}>
       <Title level={3} style={{ textAlign: "center", color: "#fff" }}>
         红包规则
       </Title>
