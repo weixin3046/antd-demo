@@ -12,6 +12,7 @@ import {
 import { WagmiProvider } from "wagmi";
 import { bsc, opBNB, bscTestnet } from "wagmi/chains";
 import CreateRedEnvelopePage from "./pages/CreateRedEnvelope";
+import RulePage from "./pages/rule";
 
 function App() {
   const config = getDefaultConfig({
@@ -30,6 +31,7 @@ function App() {
             <BrowserRouter>
               <Routes>
                 <Route path="/" element={<CreateRedEnvelopePage />} />
+                <Route path="/rule" element={<RulePage />} />
                 {/* <Route path="/bar" element={<Bar />} /> */}
               </Routes>
             </BrowserRouter>
