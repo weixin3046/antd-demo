@@ -1,14 +1,10 @@
-import { Button, ConfigProvider } from "antd";
+import { Button, ConfigProvider, theme } from "antd";
 import "./App.css";
 import "@rainbow-me/rainbowkit/styles.css";
 import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import {
-  ConnectButton,
-  getDefaultConfig,
-  RainbowKitProvider,
-} from "@rainbow-me/rainbowkit";
+import { getDefaultConfig, RainbowKitProvider } from "@rainbow-me/rainbowkit";
 import { WagmiProvider } from "wagmi";
 import { bsc, opBNB, bscTestnet } from "wagmi/chains";
 import CreateRedEnvelopePage from "./pages/CreateRedEnvelope";
@@ -27,7 +23,17 @@ function App() {
     <WagmiProvider config={config}>
       <QueryClientProvider client={queryClient}>
         <RainbowKitProvider>
-          <ConfigProvider theme={{ token: { colorPrimary: "#00b96b" } }}>
+          <ConfigProvider
+            theme={{
+              algorithm: theme.darkAlgorithm,
+              // token: {
+              //   colorTextBase: "#fff",
+              //   colorBgBase: "rgb(24, 27, 44)",
+              //   colorPrimary: "#00b96b",
+              //   // colorBgContainer: "linear-gradient(to right, rgb(97, 96, 243)",
+              // },
+            }}
+          >
             <BrowserRouter>
               <Routes>
                 <Route path="/" element={<CreateRedEnvelopePage />} />
