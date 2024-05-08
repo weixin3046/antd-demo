@@ -1,25 +1,46 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Button, ConfigProvider } from "antd";
+import "./App.css";
+import "@rainbow-me/rainbowkit/styles.css";
+import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+
+import {
+  ConnectButton,
+  getDefaultConfig,
+  RainbowKitProvider,
+} from "@rainbow-me/rainbowkit";
+import { WagmiProvider } from "wagmi";
+import { bsc, opBNB, bscTestnet } from "wagmi/chains";
+import CreateRedEnvelopePage from "./pages/CreateRedEnvelope";
 
 function App() {
+  const config = getDefaultConfig({
+    appName: "My RainbowKit App",
+    projectId: "YOUR_PROJECT_ID",
+    chains: [bsc, opBNB, bscTestnet],
+    ssr: true, // If your dApp uses server side rendering (SSR)
+  });
+  const queryClient = new QueryClient();
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <WagmiProvider config={config}>
+      <QueryClientProvider client={queryClient}>
+        <RainbowKitProvider>
+          <ConfigProvider theme={{ token: { colorPrimary: "#00b96b" } }}>
+            <BrowserRouter>
+              <Routes>
+                <Route path="/" element={<CreateRedEnvelopePage />} />
+                {/* <Route path="/bar" element={<Bar />} /> */}
+              </Routes>
+            </BrowserRouter>
+            {/* <div className="App">
+              <Button type="primary">Button</Button>
+              <ConnectButton />;
+            </div> */}
+          </ConfigProvider>
+        </RainbowKitProvider>
+      </QueryClientProvider>
+    </WagmiProvider>
   );
 }
 
